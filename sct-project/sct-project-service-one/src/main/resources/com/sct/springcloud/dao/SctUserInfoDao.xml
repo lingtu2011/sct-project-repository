@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sct.springcloud.dao.SctUserInfoDao">
+	<resultMap id="BaseResultMap" type="com.sct.springcloud.entity.SctUserInfoVO"></resultMap>
+	<select id="queryAll" resultMap="BaseResultMap">
+		select uuid,user_code as userCode,user_name as userName,age,email,lang,is_activated as isActivated,is_deleted as isDeleted,create_by as createBy,create_date as createDate,last_update_by as lastUpdateBy,last_update_date as lastUpdateDate
+		from sct_user_info
+	</select>
+	<select id="queryById" parameterType= "java.lang.String" resultMap="BaseResultMap">
+		select uuid,user_code as userCode,user_name as userName,age,email,lang,is_activated as isActivated,is_deleted as isDeleted,create_by as createBy,create_date as createDate,last_update_by as lastUpdateBy,last_update_date as lastUpdateDate
+		from sct_user_info where uuid = #{id,jdbcType=VARCHAR}
+	</select>
+
+</mapper>
+ 
+

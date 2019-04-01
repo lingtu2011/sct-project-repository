@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: sct-project-config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/configs/{profile}
+        git:
+          uri: git@github.com:lingtu2011/sct-project-config.git #GitHub上面的git仓库名字
+          default-label: master
+          force-pull: true
+          searchPaths: '{profile}'    #java -jar  XX.jar  --spring.cloud.config.profile=dev
+server:
+  port: 0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7000/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.int}
