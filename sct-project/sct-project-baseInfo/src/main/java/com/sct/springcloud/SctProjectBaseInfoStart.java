@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -15,9 +16,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableFeignClients(basePackages= {"com.sct.springcloud"})
 @ComponentScan("com.sct.springcloud")
 @EnableSwagger2
-public class SctProjectOneStart{
+@EnableAuthorizationServer
+public class SctProjectBaseInfoStart{
 	public static void main(String[] args)
 	{
-		SpringApplication.run(SctProjectOneStart.class, args);
+		SpringApplication.run(SctProjectBaseInfoStart.class, args);
 	}
 }

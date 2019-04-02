@@ -101,6 +101,7 @@
 		<module>sct-project-zuul-gateway</module>
 		<module>sct-project-config</module>
 		<module>sct-project-web</module>
+		<module>sct-project-baseInfo</module>
 	</modules>
 
 </project>
