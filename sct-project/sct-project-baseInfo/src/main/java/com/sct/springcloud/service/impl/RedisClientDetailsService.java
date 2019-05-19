@@ -3,6 +3,7 @@ package com.sct.springcloud.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
@@ -21,10 +22,10 @@ import java.util.List;
  * 如果有通过界面修改client的需求的话，不要用JdbcClientDetailsService了，请用该类，否则redis里有缓存<br>
  * 如果手动修改了该表的数据，请注意清除redis缓存，是hash结构，key是client_details
  */
-@Slf4j
 @Service
 public class RedisClientDetailsService extends JdbcClientDetailsService {
 
+	private Logger log = Logger.getLogger(getClass());
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -62,7 +63,6 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
         ClientDetails clientDetails = super.loadClientByClientId(clientId);
         if (clientDetails != null) {// 写入redis缓存
             stringRedisTemplate.boundHashOps(CACHE_CLIENT_KEY).put(clientId, JSONObject.toJSONString(clientDetails));
-            log.info("缓存clientId:{},{}", clientId, clientDetails);
         }
 
         return clientDetails;

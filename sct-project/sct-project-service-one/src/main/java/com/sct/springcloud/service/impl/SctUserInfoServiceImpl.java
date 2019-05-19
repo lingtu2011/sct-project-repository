@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
@@ -19,12 +20,10 @@ import com.sct.springcloud.service.SctUserInfoService;
 import com.sct.springcloud.util.JsonUtil;
 import com.sct.springcloud.util.RedisUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class SctUserInfoServiceImpl implements SctUserInfoService {
 
+	private Logger log = Logger.getLogger(getClass());
 	@Autowired
 	private SctUserInfoDao sctUserInfoDao;
 	@Autowired

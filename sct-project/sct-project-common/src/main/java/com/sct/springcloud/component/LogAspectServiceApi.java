@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,9 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 // 申明是个spring管理的bean
 @Component
-@Slf4j
 public class LogAspectServiceApi {
 	private JSONObject jsonObject = new JSONObject();
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	// 申明一个切点 里面是 execution表达式
 	@Pointcut("execution(public * com.itmayiedu.service.*.*(..))")

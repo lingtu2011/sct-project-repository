@@ -1,22 +1,21 @@
 package com.sct.springcloud.listener;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
-@Slf4j
 public class JmsListenerQueues {
 	
+	private Logger log = Logger.getLogger(getClass());
 	// 监听消息
 	@SuppressWarnings("static-access")
 	@JmsListener(destination = "queueOne")
 	public void distribute(String json) {
-		log.info("#####消息服务平台接受消息内容:{}#####", json);
+		log.info("#####消息服务平台接受消息内容:{}#####"+ json);
 		if (StringUtils.isEmpty(json)) {
 			return;
 		}

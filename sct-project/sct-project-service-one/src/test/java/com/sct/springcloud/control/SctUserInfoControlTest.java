@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,16 +31,14 @@ import com.sct.springcloud.dto.SctUserInfoDTO;
 import com.sct.springcloud.service.SctUserInfoService;
 import com.sct.springcloud.util.JsonUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SctUserInfoControl.class})
 @AutoConfigureMockMvc
 @WebAppConfiguration
-@Slf4j
 public class SctUserInfoControlTest {
 	
+	private Logger log = Logger.getLogger(getClass());
 	private MockMvc mvc;
 	private MockHttpSession session;
 	@Autowired
